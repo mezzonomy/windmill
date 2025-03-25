@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <title>SAT for WM</title>
+    <script>
+    /*  
+        SAT Solver for Windmill  
+        Pierre Gradit, Vincent Van Dongen
+        23/03/2025
+    */
+    D2 =    'BBbbbbbb';
+    A9 =    'owjwjwow\nwoRBwoRB\nowjoRBww\nowojRBbw\n'+
+            'BRBRBRBR\nwwojBBAB\nwbojBBBA\nwjBBBRBA\nwoBBBRAB'
+    A7 =    'hghgghah\nhghghghg\naThaaTgh\nghaTThTa\nTaTaTaTa\nhTahhggh\naThgTaha'
+    T1 =    'wwRUwwww\nwwVRUVUR\nwwwwwwRV\nVUwwwwww'
+    const invisibles = /[ \t\n\u200B\u200C\u200D\u2060\uFEFF\u180E\u00A0\u202F\u2063]+/;
+    let result = null;
+    async function compute() {
+        const x = width();
+        const y = height();
+        const champs = document.getElementById("chaine").value.split(invisibles);
+        const liste = [];
+
+        for (let champ of champs) {
+            if (champ.length !== 8) {
+            alert("Chaque jeton doit contenir exactement 8 caractères.");
+            return;
+            }
+            liste.push(champ);
+        }
+        if (liste.length>0) {
+            const response = await fetch('/compute', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({x,y,liste})
+            });
+            result = await response.json();
+            DrawSolution()
+        }
+    }
+    </script>
+    <style>
+        .button, .chaine {display:block}
+        .stop-scrolling {margin:0; padding:0; height: 100%; overflow: hidden;}
+        .floor      {   width:100%; height:100%}
+        .menu        {  position:absolute;  padding:0.5em; opacity:0.8; font-size:12pt; 
+                    font-family: Arial, Helvetica, sans-serif; font-size:12pt;
+                    color:darkred;    background-color: white; line-height: 2em;
+                    border: solid darkred; border-radius: 5pt;
+        }
+        A {
+            display: inline-block; color:navy;
+            border: 1px solid navy;
+            padding: 0.2em 0.2em;
+            border-radius: 4px; /* facultatif, pour adoucir */
+            font-family: 'Cambria Math', serif; /* pour un look mathématique */
+            }
+    </style>
+</head>
+<body class="stop-scrolling">
+    <div class="menu" style="top:0%; right:0%;">
+        <h1>SAT for Windmill</h1>
+        <p>
+            Glyph size <select id="ZOOM" onchange="zoomChange(this.value);">
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="40">40</option>
+                <option value="80">80</option>
+                <option value="140">160</option>
+                <option value="320">320</option>
+            </select>  <i id="DIMS"></i>
+        </p>
+        <p>
+            <A onclick="Init(D2)">D2</A>
+            <A onclick="Init(A9)">A9</A>
+            <A onclick="Init(A7)">A7</A>
+            <A onclick="Init(T1)">T1</A>
+        </p>
+        <p>
+            <textarea type="text" rows="4" cols="30" id="chaine"></textarea>
+        </p>
+        <button onclick="compute()">Is there a solution?</button>
+    </div>
+    <svg class="floor" viewBox="0 0 1000 1000">
+        
+    </svg>
+</body>
+<style>
+    /* Lettres minuscules : couleurs claires */
+    .a { fill: lightcoral;}    .b { fill: lightblue;}
+    .c { fill: lightgreen;}    .d { fill: lightpink;}
+    .e { fill: lightyellow;}   .f { fill: seashell;}
+    .g { fill: lavender;}      .h { fill: lemonchiffon;}
+    .i { fill: mistyrose;}     .j { fill: papayawhip;}
+    .k { fill: honeydew;}      .l { fill: beige;}
+    .m { fill: mintcream;}     .n { fill: aliceblue;}
+    .o { fill: peachpuff;}     .p { fill: plum;}
+    .q { fill: linen;}         .r { fill: ivory;}
+    .s { fill: floralwhite;}   .t { fill: whitesmoke;}
+    .u { fill: gainsboro;}     .v { fill: thistle;}
+    .w { fill: white;}         .x { fill: pink;}
+    .y { fill: wheat;}         .z { fill: moccasin;}
+
+    /* Lettres MAJUSCULES : couleurs sombres */
+    .A { fill: maroon;}        .B { fill: black;}
+    .C { fill: darkgreen;}     .D { fill: brown;}
+    .E { fill: darkslateblue;} .F { fill: indigo;}
+    .G { fill: darkred;}       .H { fill: darkblue;}
+    .I { fill: darkslategray;} .J { fill: darkolivegreen;}
+    .K { fill: saddlebrown;}   .L { fill: teal;}
+    .M { fill: darkcyan;}      .N { fill: navy;}
+    .O { fill: firebrick;}     .P { fill: darkorchid;}
+    .Q { fill: mediumblue;}    .R { fill: chocolate;}
+    .S { fill: midnightblue;}  .T { fill: steelblue;}
+    .U { fill: peru;}          .V { fill: sienna;}
+    .W { fill: rebeccapurple;} .X { fill: royalblue;}
+    .Y { fill: slategray;}     .Z { fill: dimgray;}
+
+    /* Style commun à toutes les lettres */
+    .a, .b, .c, .d, .e, .f, .g, .h, .i, .j, .k, .l, .m, .n, .o, .p, .q, .r, .s, .t, .u, .v, .w, .x, .y, .z,
+    .A, .B, .C, .D, .E, .F, .G, .H, .I, .J, .K, .L, .M, .N, .O, .P, .Q, .R, .S, .T, .U, .V, .W, .X, .Y, .Z {
+    stroke:none;
+    }
+
+    .border {fill:none; stroke:navy; stroke-width: 1pt;}
+</style>
+<script>
+    function Init(str) {
+        document.getElementById('chaine').value = str;
+    }
+
+    SVG_path = function (str, kind, { opacity = undefined, width = undefined } = {}) {
+        // https://masteringjs.io/tutorials/fundamentals/parameters
+        let path = document.createElementNS("http://www.w3.org/2000/svg", "path")
+        path.setAttribute('class',kind)
+        if (opacity != undefined) path.style['fill-opacity']=opacity
+        if (width != undefined) path.style['stroke-width']=width
+        // console.log(str)
+        path.setAttribute('d', str)
+        return path
+    }
+
+    function decodeVar(val, N, T) {
+            const idx   = val - 1;
+            const pos   = Math.floor(idx / T);
+            const t_idx = idx % T;
+            const i     = pos % N;
+            const j     = Math.floor(pos / N);
+            return { i, j, t_idx };
+        }
+    
+    function DrawSolution() {
+        if (result.s==null) {
+            floor.replaceChildren()
+            return alert("Pas de Solution") 
+        }
+        const N     = parseInt(result.N);
+        const T     = result.w;
+        const Sol   = result.s;
+        console.log(Sol); console.log(T);
+        let draw = new Map()
+        let border = []
+        T.join('').split('').forEach((char) => {draw.set(char,[])});
+        for (let val of Sol) {
+            let tile = decodeVar(parseInt(val), N, T.length);
+            let z = ZOOM(); let i = tile.i; let j=tile.j;
+            let tok = `M ${i*z} ${j*z} l ${z} 0 l 0 ${z}`
+            border.push(tok)
+            let t_idx = tile.t_idx;
+            console.log(t_idx, T[tile.t_idx])
+            T[tile.t_idx].split('').forEach((char, index) => {
+                tok = `M ${i*z + z/2} ${j*z + z/2}`
+                switch (index) {
+                    case 0: tok = tok + `l ${- z/2} ${- z/2} l ${+ z/2} 0 Z`; break;
+                    case 1: tok = tok + `l 0 ${- z/2}        l ${+ z/2} 0 Z`; break;
+                    case 2: tok = tok + `l ${+ z/2} ${- z/2} l 0 ${+ z/2} Z`; break;
+                    case 3: tok = tok + `l ${+ z/2} 0        l 0 ${+ z/2} Z`; break;
+                    case 4: tok = tok + `l ${+ z/2} ${+ z/2} l ${- z/2} 0 Z`; break;
+                    case 5: tok = tok + `l 0 ${+ z/2}        l ${- z/2} 0 Z`; break;
+                    case 6: tok = tok + `l ${- z/2} ${+ z/2} l 0 ${- z/2} Z`; break;
+                    case 7: tok = tok + `l ${- z/2} 0        l 0 ${- z/2} Z`; break;
+                };
+                draw.get(char).push(tok)
+                });
+        }
+        let drawing = []
+        for (key of draw.keys()) {
+            drawing.push(SVG_path(draw.get(key).join(' '), key))
+        }
+        drawing.push(SVG_path(border.join(' '), "border"))
+        floor.replaceChildren(...drawing);
+    }
+
+    /* --------------------------------------------- */
+
+    body   = document.getElementsByTagName("body")[0];
+    floor  = document.getElementsByClassName("floor")[0];
+
+    let zoom = 40
+    let ZOOM  = () => zoom;
+    width  = () => Math.ceil(body.getBoundingClientRect().width / ZOOM())
+    height = () => Math.ceil(body.getBoundingClientRect().height / ZOOM())
+    function panel() {
+        document.getElementById("ZOOM").value        = ZOOM();
+        document.getElementById("DIMS").innerHTML    = "=> " + width() + " x " + height();
+    }
+    function zoomChange(val) {
+        zoom = val;
+        DrawSolution();
+        panel();
+    }
+    function main(val = 40) {
+        panel();
+    }
+    window.onresize = main;
+main();
+</script>
+</html>
