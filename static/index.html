@@ -14,6 +14,8 @@
             'BRBRBRBR\nwwojBBAB\nwbojBBBA\nwjBBBRBA\nwoBBBRAB'
     A7 =    'hghgghah\nhghghghg\naThaaTgh\nghaTThTa\nTaTaTaTa\nhTahhggh\naThgTaha'
     T1 =    'wwRUwwww\nwwVRUVUR\nwwwwwwRV\nVUwwwwww'
+    D1 =    'aTaTaTTa\nTaTaaaaT'
+
     const invisibles = /[ \t\n\u200B\u200C\u200D\u2060\uFEFF\u180E\u00A0\u202F\u2063]+/;
     let result = null;
     async function compute() {
@@ -74,9 +76,10 @@
             </select>  <i id="DIMS"></i>
         </p>
         <p>
-            <A onclick="Init(D2)">D2</A>
-            <A onclick="Init(A9)">A9</A>
             <A onclick="Init(A7)">A7</A>
+            <A onclick="Init(A9)">A9</A>
+            <A onclick="Init(D1)">D1</A>
+            <A onclick="Init(D2)">D2</A>
             <A onclick="Init(T1)">T1</A>
         </p>
         <p>

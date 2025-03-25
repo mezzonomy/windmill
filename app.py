@@ -9,7 +9,7 @@ app = Flask(__name__, static_folder='static')
 def index():
     return send_from_directory('static', 'index.html')
 
-# Exemple de route pour le calcul
+# Route pour le solver SAT sur un rectangle (x,y) avec description lst
 @app.route('/compute', methods=['POST'])
 def compute():
     data = request.get_json()
@@ -29,4 +29,4 @@ def serve_static(path):
     return send_from_directory('static', path)
 
 if __name__ == '__main__':
-    app.run(debug=True) # host='192.168.1.22', port=8080, 
+    app.run() 
