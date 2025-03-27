@@ -35,10 +35,7 @@ class TileSolver:
     def add_tile_constraints(self):
         """Ajoute les contraintes de positionnement des tuiles."""
         for i, j in product(range(self.N), range(self.M)):
-            if False and (i == self.X and j == self.X):
-                clause = [self.var_pos(self.X, self.X, 0)] # first tile at the middle.
-            else:
-                clause = [self.var_pos(i, j, t_idx) for t_idx in range(len(self.wang_tiles))]
+            clause = [self.var_pos(i, j, t_idx) for t_idx in range(len(self.wang_tiles))]
             self.cnf.append(clause)
 
     def add_adjacency_constraints(self):
