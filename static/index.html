@@ -47,7 +47,8 @@
 
         for (let champ of champs) {
             if (champ.length !== 8) {
-            alert("Chaque jeton doit contenir exactement 8 caractères.");
+            document.getElementById("report").innerText="Each token must contain 8 letters";
+            document.getElementById("compute").disabled = false;
             return;
             }
             liste.push(champ);
@@ -63,12 +64,37 @@
                 result = await response.json();
                 DrawSolution()
             } catch (error) {
+                let result = null;
                 document.getElementById("report").innerText="Computing failed (timeout?)";
             }
         }
         document.getElementById("compute").disabled = false;
     }
-    </script>
+    async function period() {
+        document.getElementById("report").innerText="";
+        document.getElementById("period").disabled = true;
+        if (result) {
+            try {
+                console.log(result)
+                const response = await fetch('/period', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(result)
+                });
+                periods = await response.json();
+                if (periods.length == 0) {
+                    document.getElementById("report").innerText="No apparent period!";
+                }
+                //DrawPeriods(periods)
+            } catch (error) {
+                document.getElementById("report").innerText="Computing failed (timeout?)";
+            }
+        } else {
+            document.getElementById("report").innerText="No tiling to test!";
+        }
+        document.getElementById("period").disabled = false;
+    }
+</script>
 
 
 
@@ -147,6 +173,10 @@
         </p>
         <p>
             <button id="compute" onclick="compute()">Is there a solution?</button>
+            <p class="report" id="report"></p>
+        </p>
+        <p>
+            <button id="period" onclick="period()">Check period</button>
             <p class="report" id="report"></p>
         </p>
 

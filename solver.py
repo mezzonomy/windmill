@@ -69,3 +69,14 @@ class TileSolver:
             return [idx for idx in model if idx > 0]
         else: 
             return None
+
+# Periodicity check
+
+class Periodicity:
+    def __init__(self, N, wang_tiles, sol):
+        self.N = N
+        self.wang_tiles = wang_tiles
+        self.sol = sol 
+        print(N, wang_tiles, sol)
+    def all(self):
+        return []   
