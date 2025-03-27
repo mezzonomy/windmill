@@ -1,24 +1,45 @@
 <!DOCTYPE html>
+
+
 <html>
     
 <head>
     <title>SAT for WM</title>
     <script>
     /*  
+
         SAT Solver for Windmill  
+
+
         Pierre Gradit, Vincent Van Dongen
+
+
         23/03/2025
     */
+
+
+
+
+    // ################################################################################## 
+
+
+
+
+
     D2 =    'BBbbbbbb';
     A9 =    'owjwjwow\nwoRBwoRB\nowjoRBww\nowojRBbw\n'+
             'BRBRBRBR\nwwojBBAB\nwbojBBBA\nwjBBBRBA\nwoBBBRAB'
     A7 =    'hghgghah\nhghghghg\naThaaTgh\nghaTThTa\nTaTaTaTa\nhTahhggh\naThgTaha'
+    A6 =    'YGOBYGOB\nBPRYBLDY\nLBYRLBYR\nYDGYRYGY\nPBBOBLBO\nYGYRGYYD\nOBPBBOLB\nLBYRBPRY\nLBYRBLDY'
     T1 =    'wwRUwwww\nwwVRUVUR\nwwwwwwRV\nVUwwwwww'
     D1 =    'aTaTaTTa\nTaTaaaaT'
 
     const invisibles = /[ \t\n\u200B\u200C\u200D\u2060\uFEFF\u180E\u00A0\u202F\u2063]+/;
     let result = null;
+
     async function compute() {
+        document.getElementById("report").innerText="";
+        document.getElementById("compute").disabled = true;
         const x = width();
         const y = height();
         const champs = document.getElementById("chaine").value.split(invisibles);
@@ -31,51 +52,90 @@
             }
             liste.push(champ);
         }
+
         if (liste.length>0) {
-            const response = await fetch('/compute', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({x,y,liste})
-            });
-            result = await response.json();
-            DrawSolution()
+            try {
+                const response = await fetch('/compute', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({x,y,liste})
+                });
+                result = await response.json();
+                DrawSolution()
+            } catch (error) {
+                document.getElementById("report").innerText="Computing failed (timeout?)";
+            }
         }
+        document.getElementById("compute").disabled = false;
     }
     </script>
+
+
+
+<!-- ################################################################################## -->
+
+
+
     <style>
-        .button, .chaine {display:block}
-        .stop-scrolling {margin:0; padding:0; height: 100%; overflow: hidden;}
-        .floor      {   width:100%; height:100%}
-        .menu        {  position:absolute;  padding:0.5em; opacity:0.8; font-size:12pt; 
-                    font-family: Arial, Helvetica, sans-serif; font-size:12pt;
-                    color:darkred;    background-color: white; line-height: 2em;
-                    border: solid darkred; border-radius: 5pt;
+        .button, .chaine {
+            display:block
+        }
+        .stop-scrolling {
+            margin:0; 
+            padding:0; 
+            height: 100%; 
+            overflow: hidden;
+        }
+        .floor      {   
+            width:100%; 
+            height:100%
+        }
+        .menu        {  
+            position:absolute;  
+            padding:0.5em;
+            opacity:0.8;
+            font-size:12pt;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size:12pt;
+            color:darkred;
+            background-color: white;
+            line-height: 2em;
+            border: solid darkred; border-radius: 5pt;
         }
         A {
-            display: inline-block; color:navy;
+            display: inline-block; 
+            color:navy;
             border: 1px solid navy;
             padding: 0.2em 0.2em;
             border-radius: 4px; /* facultatif, pour adoucir */
             font-family: 'Cambria Math', serif; /* pour un look mathématique */
-            }
+        }
+        .report {
+            color:firebrick;
+            padding: 0.2em 0.2em;
+        }
     </style>
 </head>
+
+
+
+<!-- ################################################################################## -->
+
+
+
 <body class="stop-scrolling">
     <div class="menu" style="top:0%; right:0%;">
         <h1>SAT for Windmill</h1>
         <p>
-            Glyph size <select id="ZOOM" onchange="zoomChange(this.value);">
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="40">40</option>
-                <option value="80">80</option>
-                <option value="140">160</option>
-                <option value="320">320</option>
-            </select>  <i id="DIMS"></i>
+            Glyph size <input type="number" id="ZOOM" onchange="zoomChange(this.value);">
+            </input>  <i id="DIMS"></i>
         </p>
         <p>
+            Grid transparency <input type="range" min="0" max="100" value="75" 
+            id="transition" onchange="transition(this.value)">
+        </p>
+        <p>
+            <A onclick="Init(A6)">A6</A>
             <A onclick="Init(A7)">A7</A>
             <A onclick="Init(A9)">A9</A>
             <A onclick="Init(D1)">D1</A>
@@ -85,12 +145,22 @@
         <p>
             <textarea type="text" rows="4" cols="30" id="chaine"></textarea>
         </p>
-        <button onclick="compute()">Is there a solution?</button>
+        <p>
+            <button id="compute" onclick="compute()">Is there a solution?</button>
+            <p class="report" id="report"></p>
+        </p>
+
     </div>
     <svg class="floor" viewBox="0 0 1000 1000">
         
     </svg>
 </body>
+
+
+<!-- ################################################################################## -->
+
+
+
 <style>
     /* Lettres minuscules : couleurs claires */
     .a { fill: lightcoral;}    .b { fill: lightblue;}
@@ -130,6 +200,14 @@
 
     .border {fill:none; stroke:navy; stroke-width: 1pt;}
 </style>
+
+
+
+<!-- ################################################################################## -->
+
+
+
+
 <script>
     function Init(str) {
         document.getElementById('chaine').value = str;
@@ -139,7 +217,7 @@
         // https://masteringjs.io/tutorials/fundamentals/parameters
         let path = document.createElementNS("http://www.w3.org/2000/svg", "path")
         path.setAttribute('class',kind)
-        if (opacity != undefined) path.style['fill-opacity']=opacity
+        if (opacity != undefined)   
         if (width != undefined) path.style['stroke-width']=width
         // console.log(str)
         path.setAttribute('d', str)
@@ -154,7 +232,16 @@
             const j     = Math.floor(pos / N);
             return { i, j, t_idx };
         }
-    
+
+
+
+
+    // ################################################################################## 
+
+
+
+
+
     function DrawSolution() {
         if (result.s==null) {
             floor.replaceChildren()
@@ -173,7 +260,7 @@
             let tok = `M ${i*z} ${j*z} l ${z} 0 l 0 ${z}`
             border.push(tok)
             let t_idx = tile.t_idx;
-            console.log(t_idx, T[tile.t_idx])
+            //console.log(t_idx, T[tile.t_idx])
             T[tile.t_idx].split('').forEach((char, index) => {
                 tok = `M ${i*z + z/2} ${j*z + z/2}`
                 switch (index) {
@@ -197,15 +284,21 @@
         floor.replaceChildren(...drawing);
     }
 
-    /* --------------------------------------------- */
+
+
+
+    // ################################################################################## 
+
+
+
 
     body   = document.getElementsByTagName("body")[0];
     floor  = document.getElementsByClassName("floor")[0];
 
     let zoom = 40
     let ZOOM  = () => zoom;
-    width  = () => Math.ceil(body.getBoundingClientRect().width / ZOOM())
-    height = () => Math.ceil(body.getBoundingClientRect().height / ZOOM())
+    width  = () => Math.ceil(.5 * window.screen.width / ZOOM())
+    height = () => Math.ceil(.5 * window.screen.height / ZOOM())
     function panel() {
         document.getElementById("ZOOM").value        = ZOOM();
         document.getElementById("DIMS").innerHTML    = "=> " + width() + " x " + height();
@@ -215,6 +308,13 @@
         DrawSolution();
         panel();
     }
+
+    function transition(value) {
+        OPACITY = 0.01*value
+        for (cache of document.getElementsByClassName("border"))
+            cache.setAttribute("opacity", OPACITY)
+    }
+
     function main(val = 40) {
         panel();
     }
