@@ -306,6 +306,8 @@
     function zoomChange(val) {
         zoom = val;
         DrawSolution();
+        for (cache of document.getElementsByClassName("border"))
+            cache.setAttribute("opacity", OPACITY)
         panel();
     }
 
@@ -315,7 +317,7 @@
             cache.setAttribute("opacity", OPACITY)
     }
 
-    function main(val = 40) {
+    function main() {
         panel();
     }
     window.onresize = main;
