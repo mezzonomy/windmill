@@ -31,8 +31,8 @@
             'BRBRBRBR\nwwojBBAB\nwbojBBBA\nwjBBBRBA\nwoBBBRAB'
     A7 =    'hghgghah\nhghghghg\naThaaTgh\nghaTThTa\nTaTaTaTa\nhTahhggh\naThgTaha'
     A6 =    'YGOBYGOB\nBPRYBLDY\nLBYRLBYR\nYDGYRYGY\nPBBOBLBO\nYGYRGYYD\nOBPBBOLB\nLBYRBPRY\nLBYRBLDY'
-    T1 =    'wwRUwwww\nwwVRUVUR\nwwwwwwRV\nVUwwwwww'
     D1 =    'aTaTaTTa\nTaTaaaaT'
+    T1 =    'BBmnBBBB\nBBqmnqnm\nBBBBBBmq\nqnBBBBBB'
 
     const invisibles = /[ \t\n\u200B\u200C\u200D\u2060\uFEFF\u180E\u00A0\u202F\u2063]+/;
     let result = null;
@@ -62,12 +62,13 @@
                     body: JSON.stringify({x,y,liste})
                 });
                 result = await response.json();
-                DrawSolution()
             } catch (error) {
                 let result = null;
                 document.getElementById("report").innerText="Computing failed (timeout?)";
             }
         }
+        DrawSolution()
+        panel()
         document.getElementById("compute").disabled = false;
     }
     async function period() {
@@ -157,8 +158,12 @@
             </input>  <i id="DIMS"></i>
         </p>
         <p>
-            Grid transparency <input type="range" min="0" max="100" value="75" 
+            Grid transparency <input type="range" min="0" max="100" value="0" 
             id="transition" onchange="transition(this.value)">
+        </p>
+        <p>
+            Cache size <input type="range" min="0" max="100" value="100" 
+            id="cachetr" onchange="cachetr(this.value)">
         </p>
         <p>
             <A onclick="Init(A6)">A6</A>
@@ -229,6 +234,7 @@
     }
 
     .border {fill:none; stroke:navy; stroke-width: 1pt;}
+    .cache {fill:white; stroke:none;}
 </style>
 
 
@@ -268,10 +274,7 @@
 
     // ################################################################################## 
 
-
-
-
-
+    MIN   = 200;
     function DrawSolution() {
         if (result.s==null) {
             floor.replaceChildren()
@@ -283,12 +286,16 @@
         console.log(Sol); console.log(T);
         let draw = new Map()
         let border = []
+        let cache  = []
         T.join('').split('').forEach((char) => {draw.set(char,[])});
+        let dd = Math.pow(MIN/2., DELTA)/MIN; let z = ZOOM(); 
         for (let val of Sol) {
             let tile = decodeVar(parseInt(val), N, T.length);
-            let z = ZOOM(); let i = tile.i; let j=tile.j;
+            let i = tile.i; let j=tile.j;
             let tok = `M ${i*z} ${j*z} l ${z} 0 l 0 ${z}`
             border.push(tok)
+            tok = `M ${(i+dd)*z} ${(j+dd)*z} l ${z*(1-2*dd)} 0 l 0 ${z*(1-2*dd)} l ${-z*(1-2*dd)} 0 Z`
+            cache.push(tok)
             let t_idx = tile.t_idx;
             //console.log(t_idx, T[tile.t_idx])
             T[tile.t_idx].split('').forEach((char, index) => {
@@ -311,6 +318,7 @@
             drawing.push(SVG_path(draw.get(key).join(' '), key))
         }
         drawing.push(SVG_path(border.join(' '), "border"))
+        drawing.push(SVG_path(cache.join(' '), "cache"))
         floor.replaceChildren(...drawing);
     }
 
@@ -325,6 +333,9 @@
     body   = document.getElementsByTagName("body")[0];
     floor  = document.getElementsByClassName("floor")[0];
 
+    OPACITY = 0
+    DELTA   = 1
+
     let zoom = 40
     let ZOOM  = () => zoom;
     width  = () => Math.ceil(.5 * window.screen.width / ZOOM())
@@ -332,19 +343,24 @@
     function panel() {
         document.getElementById("ZOOM").value        = ZOOM();
         document.getElementById("DIMS").innerHTML    = "=> " + width() + " x " + height();
+        for (cache of document.getElementsByClassName("border"))
+            cache.setAttribute("opacity", OPACITY)
     }
     function zoomChange(val) {
         zoom = val;
         DrawSolution();
-        for (cache of document.getElementsByClassName("border"))
-            cache.setAttribute("opacity", OPACITY)
         panel();
     }
 
     function transition(value) {
         OPACITY = 0.01*value
-        for (cache of document.getElementsByClassName("border"))
-            cache.setAttribute("opacity", OPACITY)
+        panel()
+    }
+
+    function cachetr(value) {
+        DELTA = 0.01*value
+        DrawSolution();
+        panel()
     }
 
     function main() {
