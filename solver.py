@@ -73,10 +73,53 @@ class TileSolver:
 # Periodicity check
 
 class Periodicity:
+
+    def pos_var(self, idx):
+        if idx < 1:
+            raise ValueError("Index must be greater than or equal to 1")
+        t_idx = idx - 1
+        combined = (idx - 1) // len(self.wang_tiles)
+        i = combined % self.N
+        j = combined // self.N
+        return i, j, t_idx % len(self.wang_tiles)
+
     def __init__(self, N, wang_tiles, sol):
-        self.N = N
+        self.N          = N
         self.wang_tiles = wang_tiles
-        self.sol = sol 
-        print(N, wang_tiles, sol)
+        self.sol        = sol
+        self.M          = max([self.pos_var(s)[1] + 1 for s in self.sol])
+        self.matrix     = [ (['']*self.N)[:] for _ in range(self.M)]
+        #print(self.N, self.M, self.matrix)
+        for s in self.sol:
+            i,j,it = self.pos_var(s)
+            try:
+                self.matrix[j][i] = self.wang_tiles[it]
+            except:
+                print(i,j,it)
+        #print(self.matrix)
+
+    def CheckTile(self, x0, y0, x1, y1):
+        top    = ''.join([self.matrix[y0][ x][0:2]       for x in range(x0, x1+1)])
+        right  = ''.join([self.matrix[ y][x1][2:4]       for y in range(y0, y1+1)])
+        bottom = ''.join([self.matrix[y1][ x][4:6][::-1] for x in range(x0, x1+1)])
+        left   = ''.join([self.matrix[ y][x0][6:8][::-1] for y in range(y0, y1+1)])
+        test   = top == bottom and left == right
+        #if test: print((x0, y0,  x1+1, y1+1), ":", (top, right, bottom, left))
+        return test
+
     def all(self):
-        return []   
+        response = []
+        for w, h in product(range(1, self.N + 1), range(1, self.M + 1)):
+            for x, y in product(range(self.N - w), range(self.M - h)):
+                #print(x,y,w,h)
+                if self.CheckTile(x, y, x + w, y + h):
+                    response.append([x, y, x + w + 1, y + h + 1])
+        return response
+
+if __name__ == '__main__':
+    T1     = 'BBmnBBBB\nBBqmnqnm\nBBBBBBmq\nqnBBBBBB'.split()
+    SIZE   = 12
+    solver = TileSolver(SIZE, SIZE, tiles = T1)
+    model  = solver.solve()
+    period = Periodicity(solver.N, solver.wang_tiles, solver.format_solution(model))
+    print(period.all())

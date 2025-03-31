@@ -83,12 +83,13 @@
                     body: JSON.stringify(result)
                 });
                 periods = await response.json();
-                if (periods.length == 0) {
-                    document.getElementById("report").innerText="No apparent period!";
-                }
-                //DrawPeriods(periods)
             } catch (error) {
                 document.getElementById("report").innerText="Computing failed (timeout?)";
+            }
+            if (periods.length == 0) {
+                    document.getElementById("report").innerText="No apparent period!";
+                } else {
+                    DrawPeriods(periods)
             }
         } else {
             document.getElementById("report").innerText="No tiling to test!";
@@ -235,6 +236,8 @@
 
     .border {fill:none; stroke:navy; stroke-width: 1pt;}
     .cache {fill:white; stroke:none;}
+    .period {stroke:#f009;fill:#f002; stroke-width: 2pt;}
+    .period:hover {fill:#f005; stroke:red;}
 </style>
 
 
@@ -275,6 +278,8 @@
     // ################################################################################## 
 
     MIN   = 200;
+    let drawing = []
+
     function DrawSolution() {
         if (result.s==null) {
             floor.replaceChildren()
@@ -313,7 +318,7 @@
                 draw.get(char).push(tok)
                 });
         }
-        let drawing = []
+        drawing = []
         for (key of draw.keys()) {
             drawing.push(SVG_path(draw.get(key).join(' '), key))
         }
@@ -322,6 +327,17 @@
         floor.replaceChildren(...drawing);
     }
 
+    function DrawPeriods(periods) {
+        let rectangles  = []
+        let z = ZOOM()
+        for (let p of periods) {
+            let tok = `M ${p[0]*z} ${p[1]*z} L ${p[2]*z} ${p[1]*z} L ${p[2]*z} ${p[3]*z} L ${p[0]*z} ${p[3]*z}Z`
+            rectangle = SVG_path(tok,'period')
+            rectangle.addEventListener('click', function() {floor.removeChild(this);});
+            rectangles.push(rectangle);
+        }
+        floor.replaceChildren(...drawing,...rectangles)
+    }
 
 
 
