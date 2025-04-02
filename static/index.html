@@ -283,7 +283,7 @@
     function DrawSolution() {
         if (result.s==null) {
             floor.replaceChildren()
-            return alert("Pas de Solution") 
+            return document.getElementById("report").innerText="No solution!"; 
         }
         const N     = parseInt(result.N);
         const T     = result.w;
