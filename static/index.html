@@ -331,7 +331,8 @@
         let rectangles  = []
         let z = ZOOM()
         for (let p of periods) {
-            let tok = `M ${p[0]*z} ${p[1]*z} L ${p[2]*z} ${p[1]*z} L ${p[2]*z} ${p[3]*z} L ${p[0]*z} ${p[3]*z}Z`
+            let tok = `
+M ${p[0]*z} ${p[1]*z} L ${p[2]*z} ${p[1]*z} L ${p[2]*z} ${p[3]*z} L ${p[0]*z} ${p[3]*z}Z`
             rectangle = SVG_path(tok,'period')
             rectangle.addEventListener('click', function() {floor.removeChild(this);});
             rectangles.push(rectangle);
