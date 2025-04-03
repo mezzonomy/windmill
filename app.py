@@ -12,13 +12,18 @@ def index():
 # Route pour le solver SAT sur un rectangle (x,y) avec description lst
 @app.route('/compute', methods=['POST'])
 def compute():
-    data = request.get_json()
-    x = int(data.get('x'))
-    y = int(data.get('y'))
+    data   = request.get_json()
+    x      = int(data.get('x'))
+    y      = int(data.get('y'))
     lst    = data.get('liste')     
     solver = TileSolver(x, y, tiles = lst)
     model  = solver.solve()
-    return jsonify({'N':solver.N, 'w':solver.wang_tiles, 's':solver.format_solution(model)})
+    return jsonify({
+        'N':solver.N, 
+        'w':solver.wang_tiles, 
+        's':solver.format_solution(model),
+        'd':solver.desc,
+        })
 
 # Route pour vérifier l'existence de rectangles périodiques
 @app.route('/period', methods=['POST'])
@@ -28,7 +33,7 @@ def period():
     w = data.get('w')
     s = data.get('s')
     period = Periodicity(N, w, s)
-    return jsonify(period.all())
+    return jsonify(period.distincts())
 
 # Pour servir tous les autres fichiers statiques (JS, CSS, images, etc.)
 @app.route('/static/<path:path>')
