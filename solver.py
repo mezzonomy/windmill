@@ -30,10 +30,13 @@ class Periodicity:
         #print(self.matrix)
 
     def CheckTile(self, x0, y0, x1, y1):
-        top    = ''.join([self.matrix[y0][ x][0:2]       for x in range(x0, x1+1)])
-        right  = ''.join([self.matrix[ y][x1][2:4]       for y in range(y0, y1+1)])
-        bottom = ''.join([self.matrix[y1][ x][4:6][::-1] for x in range(x0, x1+1)])
-        left   = ''.join([self.matrix[ y][x0][6:8][::-1] for y in range(y0, y1+1)])
+        try:
+            top    = ''.join([self.matrix[y0][ x][0:2]       for x in range(x0, x1+1)])
+            right  = ''.join([self.matrix[ y][x1][2:4]       for y in range(y0, y1+1)])
+            bottom = ''.join([self.matrix[y1][ x][4:6][::-1] for x in range(x0, x1+1)])
+            left   = ''.join([self.matrix[ y][x0][6:8][::-1] for y in range(y0, y1+1)])
+        except:
+            raise Exception(self.N, self.M, x0, y0, x1, y1)
         test   = top == bottom and left == right
         #if test: print((x0, y0,  x1+1, y1+1), ":", (top, right, bottom, left))
         return test
@@ -53,6 +56,34 @@ class Periodicity:
                     return True
         return False
 
+    def overlap(self, ex, tile):
+        [x11, y11, x12, y12] = ex
+        [x21, y21, x22, y22] = tile
+        # Check for no overlap along the x-axis
+        if x12 <= x21 or x22 <= x11:
+            return False
+        # Check for no overlap along the y-axis
+        if y12 <= y21 or y22 <= y11:
+            return False
+        return True 
+
+
+    def overlaps(self,response, tile):
+        for ex in response:
+            if self.overlap(ex, tile):
+                return True
+        return False
+
+    def distincts(self):
+        response = []
+        for w, h in product(range(1, self.N + 1), range(1, self.M + 1)):
+            for x, y in product(range(self.N - w), range(self.M - h)):
+                if self.CheckTile(x, y, x + w, y + h):
+                    tile = [x, y, x + w + 1, y + h + 1]
+                    if not(self.overlaps(response, tile)):
+                        response.append(tile)
+        return response
+
 # SAT solver for windmill
 class TileSolver:
     def __init__(self, x, y, tiles = ['owjwjwow', 'woRBwoRB', 'owjoRBww',
@@ -63,7 +94,7 @@ class TileSolver:
         self.cnf = CNF()
 
         # Définition des tuiles avec rotations
-        self.wang_tiles = self.generate_wang_tiles(tiles)
+        self.wang_tiles, self.desc = self.generate_wang_tiles(tiles)
 
         # Ajout des contraintes
         self.add_tile_constraints()
@@ -71,13 +102,14 @@ class TileSolver:
 
     def generate_wang_tiles(self, tiles):
         """Génère les tuiles de Wang avec leurs rotations."""
-        wang = []
+        wang = []; desc = []; idx = 0
         for tile in tiles:
+            idx += 1; rotate = 0
             while not tile in wang:
-                wang.append(tile)
-                tile = tile[2:] + tile [:2]
+                wang.append(tile); desc.append((idx, rotate * 90,))
+                tile = tile[2:] + tile [:2]; rotate += 1
         #print (wang)
-        return wang
+        return wang, desc
 
     def var_pos(self, i, j, t_idx):
         """Encode une position (i, j) avec l'index de la tuile en variable SAT."""
