@@ -30,9 +30,10 @@
     A9 =    'owjwjwow\nwoRBwoRB\nowjoRBww\nowojRBbw\n'+
             'BRBRBRBR\nwwojBBAB\nwbojBBBA\nwjBBBRBA\nwoBBBRAB'
     A7 =    'hghgghah\nhghghghg\naThaaTgh\nghaTThTa\nTaTaTaTa\nhTahhggh\naThgTaha'
-    A6 =    'YGOBYGOB\nBPRYBLDY\nLBYRLBYR\nYDGYRYGY\nPBBOBLBO\nYGYRGYYD\nOBPBBOLB\nLBYRBPRY\nLBYRBLDY'
+    A6 =    'grROgrRO\nRBrgOBrg\nxrORxgOR\ngrBOrgRB\nROxrORgx\nrxOBxgBR\ngxBOrxOB\nBOxgBRgx\ngxBOgxBO'
     D1 =    'aTaTaTTa\nTaTaaaaT'
     T1 =    'BBmnBBBB\nBBqmnqnm\nBBBBBBmq\nqnBBBBBB'
+    E1 =    'mmmmmMmM\nmmMmMMMm\nmMMmMmMM'
 
     const invisibles = /[ \t\n\u200B\u200C\u200D\u2060\uFEFF\u180E\u00A0\u202F\u2063]+/;
     let result = null;
@@ -112,6 +113,7 @@
             margin:0; 
             padding:0; 
             height: 100%; 
+            width: 100%; 
             overflow: hidden;
         }
         .floor      {   
@@ -167,12 +169,18 @@
             id="cachetr" onchange="cachetr(this.value)">
         </p>
         <p>
+            Hide/Show tile name : 
+            <input type="button" onclick="toggleTooltip();">
+            </input>
+        </p>  
+        <p>
             <A onclick="Init(A6)">A6</A>
             <A onclick="Init(A7)">A7</A>
             <A onclick="Init(A9)">A9</A>
             <A onclick="Init(D1)">D1</A>
             <A onclick="Init(D2)">D2</A>
             <A onclick="Init(T1)">T1</A>
+            <A onclick="Init(E1)">E1</A>
         </p>
         <p>
             <textarea type="text" rows="4" cols="30" id="chaine"></textarea>
@@ -187,8 +195,7 @@
         </p>
 
     </div>
-    <svg class="floor" viewBox="0 0 1000 1000">
-        
+    <svg class="floor">
     </svg>
 </body>
 
@@ -199,18 +206,18 @@
 
 <style>
     /* Lettres minuscules : couleurs claires */
-    .a { fill: lightcoral;}    .b { fill: lightblue;}
-    .c { fill: lightgreen;}    .d { fill: lightpink;}
+    .a { fill: lightcoral;}    .x { fill: lightblue;}
+    .c { fill: lightgreen;}    .j { fill: lightpink;}
     .e { fill: lightyellow;}   .f { fill: seashell;}
     .g { fill: lavender;}      .h { fill: lemonchiffon;}
-    .i { fill: mistyrose;}     .j { fill: papayawhip;}
+    .i { fill: mistyrose;}     .r { fill: papayawhip;}
     .k { fill: honeydew;}      .l { fill: beige;}
     .m { fill: mintcream;}     .n { fill: aliceblue;}
     .o { fill: peachpuff;}     .p { fill: plum;}
-    .q { fill: linen;}         .r { fill: ivory;}
+    .q { fill: linen;}         .b { fill: ivory;}
     .s { fill: floralwhite;}   .t { fill: whitesmoke;}
-    .u { fill: gainsboro;}     .v { fill: thistle;}
-    .w { fill: white;}         .x { fill: pink;}
+    .u { fill: gainsboro;}     .d { fill: thistle;}
+    .w { fill: white;}         .v { fill: pink;}
     .y { fill: wheat;}         .z { fill: moccasin;}
 
     /* Lettres MAJUSCULES : couleurs sombres */
@@ -238,6 +245,7 @@
     .cache {fill:white; stroke:none;}
     .period {stroke:#f009;fill:#f002; stroke-width: 2pt;}
     .period:hover {fill:#f005; stroke:red;}
+    text{text-anchor: middle;dominant-baseline: middle;}
 </style>
 
 
@@ -279,19 +287,43 @@
 
     MIN   = 200;
     let drawing = []
+    VISIBILITY = true;
 
+    // JS caveat: modulo of negative is negative
+    modx = (λ) => (ν) => (((ν % λ) + λ) % λ);  
+    mod2 = modx(2); mod4 = modx(4); mod360 = modx(360);
+    degtotr = (deg)  => 'rotate(' + mod360(deg) + 'deg)'
+
+    function Tooltip(x,y,number, rotate) {
+        g = document.createElementNS("http://www.w3.org/2000/svg", "g")
+        text = document.createElementNS("http://www.w3.org/2000/svg", "text")
+        g.setAttribute("class", "tooltip")
+        g.setAttribute("visibility", VISIBILITY)
+        g.setAttribute('transform', `translate(${(x+.5)* ZOOM()}, ${(y+.5)* ZOOM()})`)
+        text.setAttribute("font-size", .5 * ZOOM())
+        tooltip = document.createTextNode(number.toString(8));
+        text.append(tooltip)
+        g.append(text)
+        //text.style['transformOrigin'] = 'center'
+        text.style['transform'] = degtotr(rotate)
+        return g
+    }
+    
     function DrawSolution() {
         if (result.s==null) {
             floor.replaceChildren()
             return document.getElementById("report").innerText="No solution!"; 
         }
+        console.log(result)
         const N     = parseInt(result.N);
         const T     = result.w;
         const Sol   = result.s;
+        const desc  = result.d;
         console.log(Sol); console.log(T);
         let draw = new Map()
-        let border = []
-        let cache  = []
+        let border   = []
+        let cache    = []
+        let tooltip  = []
         T.join('').split('').forEach((char) => {draw.set(char,[])});
         let dd = Math.pow(MIN/2., DELTA)/MIN; let z = ZOOM(); 
         for (let val of Sol) {
@@ -302,7 +334,9 @@
             tok = `M ${(i+dd)*z} ${(j+dd)*z} l ${z*(1-2*dd)} 0 l 0 ${z*(1-2*dd)} l ${-z*(1-2*dd)} 0 Z`
             cache.push(tok)
             let t_idx = tile.t_idx;
-            //console.log(t_idx, T[tile.t_idx])
+            console.log(desc)
+            tooltip.push(Tooltip(i,j,...desc[t_idx]))
+            console.log('Tooltip', i,j,...desc[t_idx])
             T[tile.t_idx].split('').forEach((char, index) => {
                 tok = `M ${i*z + z/2} ${j*z + z/2}`
                 switch (index) {
@@ -324,6 +358,7 @@
         }
         drawing.push(SVG_path(border.join(' '), "border"))
         drawing.push(SVG_path(cache.join(' '), "cache"))
+        drawing.push(...tooltip)
         floor.replaceChildren(...drawing);
     }
 
@@ -349,19 +384,28 @@ M ${p[0]*z} ${p[1]*z} L ${p[2]*z} ${p[1]*z} L ${p[2]*z} ${p[3]*z} L ${p[0]*z} ${
 
     body   = document.getElementsByTagName("body")[0];
     floor  = document.getElementsByClassName("floor")[0];
+    vb       = "0 0 " + window.innerWidth + " " + window.innerHeight
+    floor.setAttribute("viewBox",vb)
 
     OPACITY = 0
     DELTA   = 1
 
     let zoom = 40
     let ZOOM  = () => zoom;
-    width  = () => Math.ceil(.5 * window.screen.width / ZOOM())
-    height = () => Math.ceil(.5 * window.screen.height / ZOOM())
+    width  = () => Math.ceil(floor.getBoundingClientRect().width / ZOOM())
+    height = () => Math.ceil(floor.getBoundingClientRect().height / ZOOM())
+    
+
     function panel() {
         document.getElementById("ZOOM").value        = ZOOM();
         document.getElementById("DIMS").innerHTML    = "=> " + width() + " x " + height();
         for (cache of document.getElementsByClassName("border"))
             cache.setAttribute("opacity", OPACITY)
+        if (VISIBILITY)
+            toggle = "visible";
+        else toggle = "hidden";
+        for (tooltip of document.getElementsByClassName("tooltip"))
+            tooltip.setAttribute("visibility", toggle)
     }
     function zoomChange(val) {
         zoom = val;
@@ -371,6 +415,11 @@ M ${p[0]*z} ${p[1]*z} L ${p[2]*z} ${p[1]*z} L ${p[2]*z} ${p[3]*z} L ${p[0]*z} ${
 
     function transition(value) {
         OPACITY = 0.01*value
+        panel()
+    }
+
+    function toggleTooltip() {
+        VISIBILITY = !VISIBILITY
         panel()
     }
 
