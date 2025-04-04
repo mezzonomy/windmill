@@ -41,4 +41,6 @@ def serve_static(path):
     return send_from_directory('static', path)
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=False)
+    # gunicorn -b 127.0.0.1:8000 app:app --timeout 0
+    # /opt/homebrew/bin/ngrok http --url=windmill.ngrok.io http://localhost:8000
