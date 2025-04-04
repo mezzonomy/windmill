@@ -1,0 +1,61 @@
+1 windmills and 8 color palette: 16777216 checks
+After 2x2 over 0: 858 locked and 22 periodic %  in 0h2'23"
+After 3x3 over 204: 201 locked and 3 periodic %  in 0h2'23"
+After 3x3: it remains 0 candidates
+The last rats standing were: aaaaabba aaaabaab aaaabccb
+
+2 windmills and 2 color palette: 65536 checks
+After 2x2 over 0: 38 locked, 290 periodic and 142 subperiodic %  in 0h0'0"
+After 3x3 over 799: 410 locked and 171 periodic %  in 0h0'0"
+After 4x4 over 218: 10 locked and 54 periodic %  in 0h0'0"
+After 5x5 over 154: 52 locked and 28 periodic %  in 0h0'1"
+After 6x6 over 74: 4 locked and 33 periodic %  in 0h0'1"
+After 7x7 over 37: 11 periodic %  in 0h0'1"
+After 8x8 over 26: 16 periodic %  in 0h0'1"
+After 9x9 over 10: 1 periodic %  in 0h0'1"
+After 10x10 over 9: 5 periodic %  in 0h0'1"
+After 11x11: it remains 4 candidates
+AAAAAbbbAAbAAbbA AAAAbAbbAAAbbAAb AAAAbbAbAAbAAbbA AAAAbbbAAAAbbAAb
+
+3 windmills and 2 color palette: 16777216 checks
+After 2x2 over 0: 121 locked, 7192 periodic and 13260 subperiodic %  in 0h1'24"
+After 3x3 over 15355: 3780 locked, 4201 periodic and 1849 subperiodic %  in 0h1'43"
+After 4x4 over 5807: 205 locked, 974 periodic and 981 subperiodic %  in 0h2'1"
+After 5x5 over 3704: 618 locked, 439 periodic and 633 subperiodic %  in 0h2'20"
+After 6x6 over 2072: 32 locked, 485 periodic and 556 subperiodic %  in 0h2'36"
+After 7x7 over 1060: 54 locked, 223 periodic and 127 subperiodic %  in 0h2'49"
+After 8x8 over 658: 169 periodic and 115 subperiodic %  in 0h2'59"
+After 9x9 over 383: 6 locked, 74 periodic and 11 subperiodic %  in 0h3'7"
+After 10x10 over 292: 4 locked, 72 periodic and 32 subperiodic %  in 0h3'15"
+After 11x11 over 185: 34 periodic and 1 subperiodic %  in 0h3'22"
+After 12x12 over 150: 55 periodic and 15 subperiodic %  in 0h3'28"
+After 13x13 over 80: 15 periodic %  in 0h3'33"
+After 14x14 over 65: 5 periodic %  in 0h3'37"
+After 15x15 over 60: 7 periodic %  in 0h3'43"
+After 16x16 over 53: 17 periodic %  in 0h3'48"
+After 17x17 over 36: 6 periodic %  in 0h3'52"
+After 18x18 over 30: 8 periodic %  in 0h3'56"
+After 19x19 over 22: 1 periodic %  in 0h4'0"
+After 20x20 over 21: 13 periodic %  in 0h4'3"
+After 21x21 over 8: 3 periodic %  in 0h4'5"
+After 22x22 over 5: 1 periodic %  in 0h4'7"
+After 23x23 over 4: 1 periodic %  in 0h4'9"
+After 24x24 over 3: 1 periodic %  in 0h4'10"
+After 25x25 over 2: 1 periodic %  in 0h4'11"
+After 26x26: it remains 1 candidates
+AAAAAbAbAAbAbbbAAbbAbAbb
+
+2 windmills and 3 color palette: 43046721 checks
+After 2x2 over 0: 53515 locked, 17865 periodic and 3170 subperiodic %  in 0h2'47"
+After 3x3 over 157180: 147473 locked and 5134 periodic %  in 0h3'45"
+After 4x4 over 4573: 809 locked and 1098 periodic %  in 0h3'49"
+After 5x5 over 2666: 2229 locked and 134 periodic %  in 0h3'52"
+After 6x6 over 303: 12 locked and 209 periodic %  in 0h3'53"
+After 7x7 over 82: 22 periodic %  in 0h3'53"
+After 8x8 over 60: 35 periodic %  in 0h3'54"
+After 9x9 over 25: 2 periodic %  in 0h3'54"
+After 10x10 over 23: 7 periodic %  in 0h3'54"
+After 11x11 over 16: 1 periodic %  in 0h3'54"
+After 12x12 over 15: 15 periodic %  in 0h3'54"
+After 12x12: it remains 0 candidates
+The last rats standing were: AAAAABbbAABAABBA AAAAABBBAABAABBA AAAABAbbAAABBAAB AAAABABBAAABBAAB AAAABbbbAAbBBbbB AAAABbBBAAbBBbbB AAAABBAbAAbAAbbA AAAABBABAABAABBA AAAABBbAAAAbbAAb AAAABBbBAABbbBBb AAAABBBAAAABBAAB AAAABBBbAAbBBbbB ABABABBAAbBABAbA ABABABBABABAbBBb ABABABBABABABbbB
