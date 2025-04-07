@@ -42,5 +42,10 @@ def serve_static(path):
 
 if __name__ == '__main__':
     app.run(debug=False)
+    # Bibiography
     # gunicorn -b 127.0.0.1:8000 app:app --timeout 0
-    # /opt/homebrew/bin/ngrok http --url=windmill.ngrok.io http://localhost:8000
+    # ngrok http --url=windmill.ngrok.io http://localhost:8000
+
+    # Bibiography
+    # https://grahamshawcross.com/2012/10/12/wang-tiles-and-aperiodic-tiling/
+    # https://grahamshawcross.com/2012/10/12/aperiodic-tiling/
