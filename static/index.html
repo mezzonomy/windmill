@@ -48,6 +48,13 @@
 
         for (let champ of champs) {
             if (champ.length !== 8) {
+                if (champ.length % 8 == 0) {
+                    for (let i = 0; i < champ.length; i += 8) {
+                        liste.push(champ.slice(i, i + 8));
+                    }
+                    console.log(liste)
+                    break
+                } 
             document.getElementById("report").innerText="Each token must contain 8 letters";
             document.getElementById("compute").disabled = false;
             return;
@@ -67,6 +74,9 @@
                 let result = null;
                 document.getElementById("report").innerText="Computing failed (timeout?)";
             }
+        } else {
+            document.getElementById("report").innerText="Please input a puzzle!";
+            return
         }
         DrawSolution()
         panel()
@@ -334,9 +344,9 @@
             tok = `M ${(i+dd)*z} ${(j+dd)*z} l ${z*(1-2*dd)} 0 l 0 ${z*(1-2*dd)} l ${-z*(1-2*dd)} 0 Z`
             cache.push(tok)
             let t_idx = tile.t_idx;
-            console.log(desc)
+            // console.log(desc)
             tooltip.push(Tooltip(i,j,...desc[t_idx]))
-            console.log('Tooltip', i,j,...desc[t_idx])
+            // console.log('Tooltip', i,j,...desc[t_idx])
             T[tile.t_idx].split('').forEach((char, index) => {
                 tok = `M ${i*z + z/2} ${j*z + z/2}`
                 switch (index) {
@@ -390,7 +400,7 @@ M ${p[0]*z} ${p[1]*z} L ${p[2]*z} ${p[1]*z} L ${p[2]*z} ${p[3]*z} L ${p[0]*z} ${
     OPACITY = 0
     DELTA   = 1
 
-    let zoom = 40
+    let zoom = 80
     let ZOOM  = () => zoom;
     width  = () => Math.ceil(floor.getBoundingClientRect().width / ZOOM())
     height = () => Math.ceil(floor.getBoundingClientRect().height / ZOOM())
