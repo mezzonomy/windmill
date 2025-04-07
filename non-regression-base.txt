@@ -17,6 +17,23 @@ After 10x10 over 9: 5 periodic %  in 0h0'1"
 After 11x11: it remains 4 candidates
 AAAAAbbbAAbAAbbA AAAAbAbbAAAbbAAb AAAAbbAbAAbAAbbA AAAAbbbAAAAbbAAb
 
+2 color palette gives 256 fuel: 
+Stage 1 : 256 checks
+After 2x2 over 0: 5 locked and 8 periodic %  in 0h0'0"
+After 3x3 over 11: 10 locked and 1 periodic %  in 0h0'0"
+Stage 2 : 2560 checks
+After 2x2 over 0: 17 periodic and 56 subperiodic %  in 0h0'0"
+After 3x3 over 292: 168 locked and 33 periodic %  in 0h0'0"
+After 4x4 over 91: 2 locked and 26 periodic %  in 0h0'0"
+After 5x5 over 63: 24 locked and 11 periodic %  in 0h0'0"
+After 6x6 over 28: 11 periodic %  in 0h0'0"
+After 7x7 over 17: 5 periodic %  in 0h0'0"
+After 8x8 over 12: 7 periodic %  in 0h0'0"
+After 9x9 over 5: 1 periodic %  in 0h0'0"
+After 10x10 over 4: 2 periodic %  in 0h0'0"
+After 11x11: it remains 2 candidates
+AAAAAaaaAAaAAaaA AAAAaaAaAAaAAaaA
+
 3 windmills and 2 color palette: 16777216 checks
 After 2x2 over 0: 121 locked, 7192 periodic and 13260 subperiodic %  in 0h1'24"
 After 3x3 over 15355: 3780 locked, 4201 periodic and 1849 subperiodic %  in 0h1'43"
@@ -59,3 +76,201 @@ After 11x11 over 16: 1 periodic %  in 0h3'54"
 After 12x12 over 15: 15 periodic %  in 0h3'54"
 After 12x12: it remains 0 candidates
 The last rats standing were: AAAAABbbAABAABBA AAAAABBBAABAABBA AAAABAbbAAABBAAB AAAABABBAAABBAAB AAAABbbbAAbBBbbB AAAABbBBAAbBBbbB AAAABBAbAAbAAbbA AAAABBABAABAABBA AAAABBbAAAAbbAAb AAAABBbBAABbbBBb AAAABBBAAAABBAAB AAAABBBbAAbBBbbB ABABABBAAbBABAbA ABABABBABABAbBBb ABABABBABABABbbB
+
+-----------------------------------------------
+ROCKET
+-----------------------------------------------
+
+python3 rocket.py 2 Aa
+2 color palette gives 256 fuel: 
+Stage 1 : 256 checks
+After 2x2 over 0: 5 locked and 8 periodic %  in 0h0'0"
+After 3x3 over 11: 10 locked and 1 periodic %  in 0h0'0"
+Stage 2 : 2560 checks
+After 2x2 over 0: 17 periodic and 56 subperiodic %  in 0h0'0"
+After 3x3 over 292: 168 locked and 33 periodic %  in 0h0'0"
+After 4x4 over 91: 2 locked and 26 periodic %  in 0h0'0"
+After 5x5 over 63: 24 locked and 11 periodic %  in 0h0'0"
+After 6x6 over 28: 11 periodic %  in 0h0'0"
+After 7x7 over 17: 5 periodic %  in 0h0'0"
+After 8x8 over 12: 7 periodic %  in 0h0'0"
+After 9x9 over 5: 1 periodic %  in 0h0'0"
+After 10x10 over 4: 2 periodic %  in 0h0'0"
+After 11x11: it remains 2 candidates
+AAAAAaaaAAaAAaaA AAAAaaAaAAaAAaaA
+iMac:windmill pierregradit$ /usr/local/bin/python3 rocket.py 2 Aac
+3 color palette gives 6561 fuel: 
+Stage 1 : 6561 checks
+After 2x2 over 0: 66 locked and 14 periodic %  in 0h0'0"
+After 3x3 over 51: 50 locked and 1 periodic %  in 0h0'0"
+Stage 2 : 328050 checks
+After 2x2 over 0: 731 periodic and 751 subperiodic %  in 0h0'20"
+After 3x3 over 24610: 23512 locked and 129 periodic %  in 0h0'29"
+After 4x4 over 969: 112 locked and 244 periodic %  in 0h0'30"
+After 5x5 over 613: 527 locked and 35 periodic %  in 0h0'31"
+After 6x6 over 51: 30 periodic %  in 0h0'31"
+After 7x7 over 21: 5 periodic %  in 0h0'31"
+After 8x8 over 16: 7 periodic %  in 0h0'31"
+After 9x9 over 9: 1 periodic %  in 0h0'31"
+After 10x10 over 8: 2 periodic %  in 0h0'31"
+After 11x11 over 6: 1 periodic %  in 0h0'31"
+After 12x12 over 5: 5 periodic %  in 0h0'31"
+After 12x12: it remains 0 candidates
+The last periodics were: AAAAAaaaAAaAAaaA AAAAaaAaAAaAAaaA AaAaAaaAAcaAaAcA AaAaAaaAaAaAacca AaAaAaaAaAaAcaac
+iMac:windmill pierregradit$ /usr/local/bin/python3 rocket.py 3 Aac
+3 color palette gives 6561 fuel: 
+Stage 1 : 6561 checks
+After 2x2 over 0: 66 locked and 14 periodic %  in 0h0'0"
+After 3x3 over 51: 50 locked and 1 periodic %  in 0h0'0"
+Stage 2 : 328050 checks
+After 2x2 over 0: 731 periodic and 751 subperiodic %  in 0h0'20"
+After 3x3 over 24610: 23512 locked and 129 periodic %  in 0h0'29"
+After 4x4 over 969: 112 locked and 244 periodic %  in 0h0'30"
+After 5x5 over 613: 527 locked and 35 periodic %  in 0h0'31"
+After 6x6 over 51: 30 periodic %  in 0h0'31"
+After 7x7 over 21: 5 periodic %  in 0h0'31"
+After 8x8 over 16: 7 periodic %  in 0h0'31"
+After 9x9 over 9: 1 periodic %  in 0h0'31"
+After 10x10 over 8: 2 periodic %  in 0h0'31"
+After 11x11 over 6: 1 periodic %  in 0h0'31"
+After 12x12 over 5: 5 periodic %  in 0h0'31"
+Stage 3 : 0 checks
+After 2x2: it remains 0 candidates
+The last periodics were: 
+iMac:windmill pierregradit$ /usr/local/bin/python3 rocket.py 3 Aac
+3 color palette gives 6561 fuel: 
+engine 1
+Stage 1 : 6561 checks
+After 2x2 over 0: 66 locked and 14 periodic %  in 0h0'0"
+After 3x3 over 51: 50 locked and 1 periodic %  in 0h0'0"
+engine 50
+Stage 2 : 328050 checks
+After 2x2 over 0: 731 periodic and 751 subperiodic %  in 0h0'20"
+After 3x3 over 24610: 23512 locked and 129 periodic %  in 0h0'29"
+After 4x4 over 969: 112 locked and 244 periodic %  in 0h0'30"
+After 5x5 over 613: 527 locked and 35 periodic %  in 0h0'31"
+After 6x6 over 51: 30 periodic %  in 0h0'31"
+After 7x7 over 21: 5 periodic %  in 0h0'31"
+After 8x8 over 16: 7 periodic %  in 0h0'31"
+After 9x9 over 9: 1 periodic %  in 0h0'31"
+After 10x10 over 8: 2 periodic %  in 0h0'31"
+After 11x11 over 6: 1 periodic %  in 0h0'31"
+After 12x12 over 5: 5 periodic %  in 0h0'31"
+engine 0
+Stage 3 : 0 checks
+After 2x2: it remains 0 candidates
+The last periodics were: 
+iMac:windmill pierregradit$ /usr/local/bin/python3 rocket.py 3 Aac
+3 color palette gives 6561 fuel: 
+engine 1
+Stage 1 : 6561 checks
+After 2x2 over 0: 66 locked and 14 periodic %  in 0h0'0"
+After 3x3 over 51: 50 locked and 1 periodic %  in 0h0'0"
+develop 0 50
+engine 50
+Stage 2 : 328050 checks
+After 2x2 over 0: 731 periodic and 751 subperiodic %  in 0h0'20"
+After 3x3 over 24610: 23512 locked and 129 periodic %  in 0h0'29"
+After 4x4 over 969: 112 locked and 244 periodic %  in 0h0'30"
+After 5x5 over 613: 527 locked and 35 periodic %  in 0h0'31"
+After 6x6 over 51: 30 periodic %  in 0h0'31"
+After 7x7 over 21: 5 periodic %  in 0h0'31"
+After 8x8 over 16: 7 periodic %  in 0h0'31"
+After 9x9 over 9: 1 periodic %  in 0h0'31"
+After 10x10 over 8: 2 periodic %  in 0h0'31"
+After 11x11 over 6: 1 periodic %  in 0h0'31"
+After 12x12 over 5: 5 periodic %  in 0h0'31"
+develop 0 0
+engine 0
+Stage 3 : 0 checks
+After 2x2: it remains 0 candidates
+The last periodics were: 
+iMac:windmill pierregradit$ /usr/local/bin/python3 rocket.py 3 Aac
+3 color palette gives 6561 fuel: 
+engine 1
+Stage 1 : 6561 checks
+After 2x2 over 0: 66 locked and 14 periodic %  in 0h0'0"
+After 3x3 over 51: 50 locked and 1 periodic %  in 0h0'0"
+develop 0 116
+engine 116
+Stage 2 : 761076 checks
+After 2x2 over 0: 12500 locked, 2174 periodic and 979 subperiodic %  in 0h0'44"
+After 3x3 over 39242: 37726 locked and 189 periodic %  in 0h0'58"
+After 4x4 over 1327: 266 locked and 280 periodic %  in 0h1'0"
+After 5x5 over 781: 674 locked and 39 periodic %  in 0h1'0"
+After 6x6 over 68: 2 locked and 44 periodic %  in 0h1'1"
+After 7x7 over 22: 5 periodic %  in 0h1'1"
+After 8x8 over 17: 8 periodic %  in 0h1'1"
+After 9x9 over 9: 1 periodic %  in 0h1'1"
+After 10x10 over 8: 2 periodic %  in 0h1'1"
+After 11x11 over 6: 1 periodic %  in 0h1'1"
+After 12x12 over 5: 5 periodic %  in 0h1'1"
+develop 0 51168
+engine 51168
+Stage 3 : 335713248 checks
+^CTraceback (most recent call last):
+  File "/Users/pierregradit/Documents/Recherche Pierre/windmill/rocket.py", line 43, in <module>
+    n, solutions, periodics = explore(engine(space, size), len(space) * power)
+                              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierregradit/Documents/Recherche Pierre/windmill/explore.py", line 93, in explore
+    for a_set in sets:
+                 ^^^^
+  File "/Users/pierregradit/Documents/Recherche Pierre/windmill/rocket.py", line 15, in engine
+    result = isminimum(candidate, palette, colors, tuple(pairs), countdown)
+  File "/Users/pierregradit/Documents/Recherche Pierre/windmill/explore.py", line 71, in isminimum
+    cppt = (
+    ^^^^
+KeyboardInterrupt
+
+iMac:windmill pierregradit$ /usr/local/bin/python3 rocket.py 3 Aac
+3 color palette gives 6561 fuel: 
+engine 1
+Stage 1 : 6561 checks
+After 2x2 over 0: 66 locked and 14 periodic %  in 0h0'0"
+After 3x3 over 51: 50 locked and 1 periodic %  in 0h0'0"
+develop 0 116
+engine 116
+Stage 2 : 761076 checks
+After 2x2 over 0: 12500 locked, 2174 periodic and 979 subperiodic %  in 0h0'45"
+After 3x3 over 39242: 37726 locked and 189 periodic %  in 0h0'59"
+After 4x4 over 1327: 266 locked and 280 periodic %  in 0h1'0"
+After 5x5 over 781: 674 locked and 39 periodic %  in 0h1'1"
+After 6x6 over 68: 2 locked and 44 periodic %  in 0h1'1"
+After 7x7 over 22: 5 periodic %  in 0h1'1"
+After 8x8 over 17: 8 periodic %  in 0h1'1"
+After 9x9 over 9: 1 periodic %  in 0h1'1"
+After 10x10 over 8: 2 periodic %  in 0h1'2"
+After 11x11 over 6: 1 periodic %  in 0h1'2"
+After 12x12 over 5: 5 periodic %  in 0h1'2"
+develop 0 51168
+engine 51168
+Stage 3 : 335713248 checks
+After 2x2 over 0: 1742172 locked, 458396 periodic and 628772 subperiodic %  in 17h44'45"
+After 3x3 over 19036794: 17048540 locked, 92519 periodic and 10918 subperiodic %  in 22h42'51"
+After 4x4 over 1884817: 577298 locked, 180118 periodic and 28103 subperiodic %  in 0h28'8"
+After 5x5 over 1099298: 979173 locked, 24366 periodic and 4512 subperiodic %  in 1h26'37"
+After 6x6 over 91247: 10336 locked, 39517 periodic and 2583 subperiodic %  in 1h37'7"
+After 7x7 over 38811: 16330 locked, 3780 periodic and 255 subperiodic %  in 1h43'39"
+After 8x8 over 18446: 281 locked, 6488 periodic and 444 subperiodic %  in 1h48'18"
+After 9x9 over 11233: 699 locked, 1329 periodic and 138 subperiodic %  in 1h52'30"
+After 10x10 over 9067: 18 locked, 4461 periodic and 74 subperiodic %  in 1h56'0"
+After 11x11 over 4514: 96 locked, 987 periodic and 29 subperiodic %  in 1h58'45"
+After 12x12 over 3402: 1475 periodic and 43 subperiodic %  in 2h0'55"
+After 13x13 over 1884: 309 periodic %  in 2h2'43"
+After 14x14 over 1575: 477 periodic %  in 2h4'24"
+After 15x15 over 1098: 24 locked and 206 periodic %  in 2h5'57"
+After 16x16 over 868: 191 periodic %  in 2h7'20"
+After 17x17 over 677: 8 locked and 102 periodic %  in 2h8'41"
+After 18x18 over 567: 130 periodic %  in 2h9'58"
+After 19x19 over 437: 78 periodic %  in 2h11'10"
+After 20x20 over 359: 185 periodic %  in 2h12'4"
+After 21x21 over 174: 27 periodic %  in 2h12'46"
+After 22x22 over 147: 23 periodic %  in 2h13'28"
+After 23x23 over 124: 20 periodic %  in 2h14'9"
+After 24x24 over 104: 8 periodic %  in 2h14'52"
+After 25x25 over 96: 9 periodic %  in 2h15'38"
+After 26x26 over 87: 10 periodic %  in 2h16'26"
+After 27x27 over 77: 9 periodic %  in 2h17'17"
+After 28x28 over 68: 5 periodic %  in 2h18'11"
+After 29x29: it remains 63 candidates
+AAAaAaAcAcAcAcaAAccAcAcA AAAaAaacaAacacacaccacaca AAAaAacaaAcacacaacacacca AAAaAcAcAaAaAacAAaaAaAaA AAAaacAaAAcaAacaaAacaAca AAAaacAaAacaaacaaAacaAca AAAaacacAaAaAacaAaaAaAaA AAAacAcAAaAaAaAcAaaAaAaA AAAacacaAaAaAaacAaaAaAaA AAAaAacAAcAcAccAaAcAcAcA AAAaAcAaAaaAAacAAaaAaAaA AAAaAcAaAacAaAcAAcaAAcaA AAAaAcAaAacAaAcAAcaAAcaa AAAaacAaAaaAAacaAaaAaAaA AAAaacAaAacaaAcaaAacaAac AAAacAAaAaAcAaaAAaaAaAaA AAAacAAaAaAcaAAcaAcAaAcA AAAacAAaAaAcaAAcaAcAaacA AAAacaAaAaaAAaacAaaAaAaA AAAacaAaAaacaAacaAcaaAca AaAaAaAcAaaAAacAAccAaAaA AaAaAaAcAaaAAcaAAacAaAcA AaAaAaacAaaAAacaaAaAcaac AaAaAaacAaaAacaAAacaaAca AaAaAacAAaAcAaaAAcaAaAcA AaAaAacaAaaAAaacaAaAacca AaAaAacaAaaAcaaAAaacaAac AAAAAAAaAAcAaAcAAcaAaAaA AAAAAaAaAAAAAcaAAAcAaAaA AAAAAaAaAAAAaAAcAAaAaAcA AAAAAaAaAAAAaAacAAaAaAca AAAAAaAaAAAAaAcAAAaAaAAc AAAAAaAaAAAAaAcaAAaAaAac AAAAAaAaAAAAacaAAAcaaAaA AAAAAaAaAAAAcAaAAAAcaAaA AAAAAaAaAAAAcaaAAAacaAaA AAAAAaAaAAAccAaaAccAccaA AAAAAaAaAAaaAaaAAaaAaAcc AAAAAaAaAAaacAAcAcaAcccA AAAAAaAaAAaccaaaaAaccacc AAAAAaAaAAcAAcaaAcccaAcA AAAAAaAaAAcaacaaaAcaaccc AAAaAccAAccAaaacaAaAcaca AAAaAccAAccAaacaaAaAacac AAAaaAAaAaaaAcaAaAaAcAcA AAAaaAAaAaaacAaAAcAcaAaA AAAaaAAaAaaacaaAaAaAacac AAAaaAAcAaAacAcAAaaAaAaa AAAaaAAcAaaAacaacAcAcaca AAAaaAAcAaaAcaaaacaccAcA AAAaaAacAaaAcAaaAcAccaca AAAaaAcAAaaAcaaaAcAcacac AAAaaccaAcAcaAaAaacAacca AAAaaccaAcaccaaaaAaAcAcA AaAaAaaAAacAcAcAAcAcaAaA AaAaAcaAAaaAAcaAAacAaAcA AaAaaAAcAaaAAcaAAacAaAcA AaAaaAacAaaAacaAAacaaAca AaAaaAcaAaaAcaaAAaacaAac AaAaacaAAaaAacaAAacaaAca AaAacaaAAaaAcaaAAaacaAac AaAaaAcAAaAcaAAcAaaAcAaA AaAacAaAAaAcaAAcAaaAcAaA
