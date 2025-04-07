@@ -60,4 +60,4 @@ AaAaaAcaAaaAcaaAAaacaAac
 AaAaacaAAaaAacaAAacaaAca
 AaAacaaAAaaAcaaAAaacaAac
 AaAaaAcAAaAcaAAcAaaAcAaA
-AaAacAaAAaAcaAAcAaaAcAaA -> Periodic (12-ominos + flip)
+# AaAacAaAAaAcaAAcAaaAcAaA -> Periodic (12-ominos + flip)
