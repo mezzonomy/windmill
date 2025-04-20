@@ -22,19 +22,14 @@
 
     // ################################################################################## 
 
-
-
-
-
-    D2 =    'BBbbbbbb';
-    A9 =    'owjwjwow\nwoRBwoRB\nowjoRBww\nowojRBxw\n'+
-            'BRBRBRBR\nwwojBBAB\nwxojBBBA\nwjBBBRBA\nwoBBBRAB'
-    A7 =    'hghgghah\nhghghghg\naThaaTgh\nghaTThTa\nTaTaTaTa\nhTahhggh\naThgTaha'
-    A6 =    'grROgrRO\nRBrgOBrg\nxrORxgOR\ngrBOrgRB\nROxrORgx\nrxOBxgBR\ngxBOrxOB\nBOxgBRgx\ngxBOgxBO'
-    D1 =    'aTaTaTTa\nTaTaaaaT'
-    T1 =    'BBmnBBBB\nBBqmnqnm\nBBBBBBmq\nqnBBBBBB'
-    E1 =    'mmmmmMmM\nmmMmMMMm\nmMMmMmMM'
     W11 = 'ANAENAEC\nBNAENBEC\nANCENCEC\nDNBENAEB\nBNBENOEB\nONOENAEO\nANCENBEO\nBNOENBEA\nBNAENDEA\nCNCENBEA\nANOENAEC'
+    A9  = 'owjwjwow\nwoRBwoRB\nowjoRBww\nowojRBxw\nBRBRBRBR\nwwojBBAB\nwxojBBBA\nwjBBBRBA\nwoBBBRAB'
+    A8  = 'wrwrwrwr\ngwgwrwrw\nGGWDGGWD\nWDGGBWOW\nGGrwWBwr\nwgWOrwBW\nWDwrWOrw\nGGrwDWwg'
+    A7  = 'hghgghwh\nhghghghg\nAThwATgh\nghATthTA\nTATATATA\nhtwhhggh\nAThgTAhw'
+    A6  = 'grrogrro\nRBrgOBrg\nXRorXGor\ngrBOrgRB\nroXRorGX\nRXOBXGBR\nGXBORXOB\nBOXGBRGX\nGXBOGXBO'
+    T1  = 'BBmnBBBB\nBBqmnqnm\nBBBBBBmq\nqnBBBBBB'
+    E1  = 'mmmmmMmM\nmmMmMMMm\nmMMmMmMM'
+    E2  = 'AAAaaAAa\nAaaacAaA\nAcAcaAaA'
 
     const invisibles = /[ \t\n\u200B\u200C\u200D\u2060\uFEFF\u180E\u00A0\u202F\u2063]+/;
     let result = null;
@@ -185,14 +180,14 @@
             </input>
         </p>  
         <p>
-            <A onclick="Init(A6)">A6</A>
-            <A onclick="Init(A7)">A7</A>
+            <A onclick="Init(W11)">W11</A>
             <A onclick="Init(A9)">A9</A>
-            <A onclick="Init(D1)">D1</A>
-            <A onclick="Init(D2)">D2</A>
+            <A onclick="Init(A8)">A8</A>
+            <A onclick="Init(A7)">A7</A>
+            <A onclick="Init(A6)">A6</A>
             <A onclick="Init(T1)">T1</A>
             <A onclick="Init(E1)">E1</A>
-            <A onclick="Init(W11)">W11</A>
+            <A onclick="Init(E2)">E2</A>
         </p>
         <p>
             <textarea type="text" rows="4" cols="30" id="chaine"></textarea>

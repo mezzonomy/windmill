@@ -81,10 +81,16 @@ def normalize(tile):
     mapping = dict(zip(palette, colors))
     t       = [mapping[c] for c in tile]
     return minimum(t, palette, colors, len(tile)//8)
-    
 
-def explore(sets, cardinal, stage_information = stage_information, perfmeter = perfmeter):
-    n = 2
+
+FINITE = True
+
+def lost(kind, key):
+    if not FINITE:
+        print("#", key, '-> by non-terminating brute-force:', kind)
+        # display lost checks when not FINITE
+
+def explore(sets, cardinal, n = 2, stage_information = stage_information, perfmeter = perfmeter):
     while True:
         sieve     = [];  # kept sets
         locked    = 0; periodic  = 0; subperiodic = 0; last_rats = [] # outputs
@@ -97,9 +103,11 @@ def explore(sets, cardinal, stage_information = stage_information, perfmeter = p
             model, period  = TileSolver(n, n, tiles = as_list).mp()
             if not model:
                 locked += 1
+                lost("locked", a_set)
                 continue
             if period:
                 periodic += 1
+                lost("periodic", a_set)
                 last_rats.append(a_set)
                 continue
             keep    = True 
@@ -113,11 +121,14 @@ def explore(sets, cardinal, stage_information = stage_information, perfmeter = p
                     if period:
                         keep = False
                         subperiodic += 1
+                        lost("subperiodic", a_set)
                         break
             if keep:
                 sieve.append(a_set)
+            else:
+                lost(a_set)
             # - End sieve for a_set at a given size
-        if (periodic == 0 and locked==0 and subperiodic == 0):
+        if (FINITE and periodic == 0 and locked==0 and subperiodic == 0):
             break
         stage_information(n, idx, locked, periodic, subperiodic)
         if len(sieve)==0:
@@ -148,7 +159,7 @@ def develop(sets, cardinal, stage_information = stage_information, perfmeter = p
             if period:
                 periodic += 1
                 continue
-            keep    = True 
+            keep    = True
             for subsize in range(1,len(as_list)):
                 if not(keep):
                     break
@@ -177,6 +188,21 @@ def develop(sets, cardinal, stage_information = stage_information, perfmeter = p
 
 if __name__ == '__main__':
     from sys import argv
-    print(normalize(argv[-1]))
+    if (len(argv)>1):
+        def generate():
+            with open(argv[-1]) as iof:
+                for line in iof:
+                    if line.startswith("#"):
+                        continue
+                    yield line.strip()
+        FINITE = False; # go until CTRL-C
+        n, sets, _ = explore(generate(), 100, n = 53)
+        cardinal = len(sets)
+        print(f'After {n}x{n}: it remains {cardinal} candidates')
+        if sets:
+            print(' '.join(sets))
+    else:
+        print("usage: /usr/local/bin/python3 explore.py <file>")
 
-# owjwjwowwoRBwoRBowjoRBwwowojRBxwBRBRBRBRwwojBBABwxojBBBAwjBBBRBAwoBBBRAB
+
+
