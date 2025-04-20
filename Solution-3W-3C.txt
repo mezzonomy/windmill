@@ -1,63 +1,63 @@
-AAAaAaAcAcAcAcaAAccAcAcA
+# AAAaAaAcAcAcAcaAAccAcAcA -> by non-terminating brute-force: periodic
 AAAaAaacaAacacacaccacaca
-AAAaAacaaAcacacaacacacca
-AAAaAcAcAaAaAacAAaaAaAaA
-AAAaacAaAAcaAacaaAacaAca
-AAAaacAaAacaaacaaAacaAca
-AAAaacacAaAaAacaAaaAaAaA
-AAAacAcAAaAaAaAcAaaAaAaA
-AAAacacaAaAaAaacAaaAaAaA
-AAAaAacAAcAcAccAaAcAcAcA
-AAAaAcAaAaaAAacAAaaAaAaA
-AAAaAcAaAacAaAcAAcaAAcaA
-AAAaAcAaAacAaAcAAcaAAcaa
-AAAaacAaAaaAAacaAaaAaAaA
-AAAaacAaAacaaAcaaAacaAac
-AAAacAAaAaAcAaaAAaaAaAaA
-AAAacAAaAaAcaAAcaAcAaAcA
-AAAacAAaAaAcaAAcaAcAaacA
-AAAacaAaAaaAAaacAaaAaAaA
-AAAacaAaAaacaAacaAcaaAca
-AaAaAaAcAaaAAacAAccAaAaA
-AaAaAaAcAaaAAcaAAacAaAcA
-AaAaAaacAaaAAacaaAaAcaac
-AaAaAaacAaaAacaAAacaaAca
-AaAaAacAAaAcAaaAAcaAaAcA
-AaAaAacaAaaAAaacaAaAacca
-AaAaAacaAaaAcaaAAaacaAac
-AAAAAAAaAAcAaAcAAcaAaAaA
+# AAAaAacaaAcacacaacacacca -> by non-terminating brute-force: periodic
+# AAAaAcAcAaAaAacAAaaAaAaA -> by non-terminating brute-force: periodic
+# AAAaacAaAAcaAacaaAacaAca -> by non-terminating brute-force: periodic
+# AAAaacAaAacaaacaaAacaAca -> by non-terminating brute-force: periodic
+# AAAaacacAaAaAacaAaaAaAaA -> by non-terminating brute-force: periodic
+# AAAacAcAAaAaAaAcAaaAaAaA -> by non-terminating brute-force: periodic
+# AAAacacaAaAaAaacAaaAaAaA -> by non-terminating brute-force: periodic
+# AAAaAacAAcAcAccAaAcAcAcA -> by non-terminating brute-force: periodic
+# AAAaAcAaAaaAAacAAaaAaAaA -> by non-terminating brute-force: periodic
+# AAAaAcAaAacAaAcAAcaAAcaA -> by non-terminating brute-force: periodic
+# AAAaAcAaAacAaAcAAcaAAcaa -> by non-terminating brute-force: periodic
+# AAAaacAaAaaAAacaAaaAaAaA -> by non-terminating brute-force: periodic
+# AAAaacAaAacaaAcaaAacaAac -> by non-terminating brute-force: periodic
+# AAAacAAaAaAcAaaAAaaAaAaA -> by non-terminating brute-force: periodic
+# AAAacAAaAaAcaAAcaAcAaAcA -> by non-terminating brute-force: periodic
+# AAAacAAaAaAcaAAcaAcAaacA -> by non-terminating brute-force: periodic
+# AAAacaAaAaaAAaacAaaAaAaA -> by non-terminating brute-force: periodic
+# AAAacaAaAaacaAacaAcaaAca -> by non-terminating brute-force: periodic
+# AaAaAaAcAaaAAacAAccAaAaA -> by non-terminating brute-force: periodic
+# AaAaAaAcAaaAAcaAAacAaAcA -> by non-terminating brute-force: periodic
+# AaAaAaacAaaAAacaaAaAcaac -> by non-terminating brute-force: periodic
+# AaAaAaacAaaAacaAAacaaAca -> by non-terminating brute-force: periodic
+# AaAaAacAAaAcAaaAAcaAaAcA -> by non-terminating brute-force: periodic
+# AaAaAacaAaaAAaacaAaAacca -> by non-terminating brute-force: periodic
+# AaAaAacaAaaAcaaAAaacaAac -> by non-terminating brute-force: periodic
+# AAAAAAAaAAcAaAcAAcaAaAaA -> by non-terminating brute-force: periodic
 AAAAAaAaAAAAAcaAAAcAaAaA
-AAAAAaAaAAAAaAAcAAaAaAcA
-AAAAAaAaAAAAaAacAAaAaAca
-AAAAAaAaAAAAaAcAAAaAaAAc
-AAAAAaAaAAAAaAcaAAaAaAac
-AAAAAaAaAAAAacaAAAcaaAaA
-AAAAAaAaAAAAcAaAAAAcaAaA
-AAAAAaAaAAAAcaaAAAacaAaA
-AAAAAaAaAAAccAaaAccAccaA
-AAAAAaAaAAaaAaaAAaaAaAcc
-AAAAAaAaAAaacAAcAcaAcccA
-AAAAAaAaAAaccaaaaAaccacc
-AAAAAaAaAAcAAcaaAcccaAcA
-AAAAAaAaAAcaacaaaAcaaccc
-AAAaAccAAccAaaacaAaAcaca
-AAAaAccAAccAaacaaAaAacac
-AAAaaAAaAaaaAcaAaAaAcAcA
-AAAaaAAaAaaacAaAAcAcaAaA
-AAAaaAAaAaaacaaAaAaAacac
-AAAaaAAcAaAacAcAAaaAaAaa
-AAAaaAAcAaaAacaacAcAcaca
-AAAaaAAcAaaAcaaaacaccAcA
-AAAaaAacAaaAcAaaAcAccaca
-AAAaaAcAAaaAcaaaAcAcacac
-AAAaaccaAcAcaAaAaacAacca
-AAAaaccaAcaccaaaaAaAcAcA
-AaAaAaaAAacAcAcAAcAcaAaA
-AaAaAcaAAaaAAcaAAacAaAcA
-AaAaaAAcAaaAAcaAAacAaAcA
-AaAaaAacAaaAacaAAacaaAca
-AaAaaAcaAaaAcaaAAaacaAac
-AaAaacaAAaaAacaAAacaaAca
-AaAacaaAAaaAcaaAAaacaAac
-AaAaaAcAAaAcaAAcAaaAcAaA
-AaAacAaAAaAcaAAcAaaAcAaA -> Periodic (12-ominos + flip)
+# AAAAAaAaAAAAaAAcAAaAaAcA -> by non-terminating brute-force: periodic
+# AAAAAaAaAAAAaAacAAaAaAca -> by non-terminating brute-force: periodic
+# AAAAAaAaAAAAaAcAAAaAaAAc -> by non-terminating brute-force: periodic
+# AAAAAaAaAAAAaAcaAAaAaAac -> by non-terminating brute-force: periodic
+# AAAAAaAaAAAAacaAAAcaaAaA -> by non-terminating brute-force: periodic
+# AAAAAaAaAAAAcAaAAAAcaAaA -> by non-terminating brute-force: periodic
+# AAAAAaAaAAAAcaaAAAacaAaA -> by non-terminating brute-force: periodic
+# AAAAAaAaAAAccAaaAccAccaA -> by non-terminating brute-force: periodic
+# AAAAAaAaAAaaAaaAAaaAaAcc -> by non-terminating brute-force: periodic
+# AAAAAaAaAAaacAAcAcaAcccA -> by non-terminating brute-force: periodic
+# AAAAAaAaAAaccaaaaAaccacc -> by non-terminating brute-force: periodic
+# AAAAAaAaAAcAAcaaAcccaAcA -> by non-terminating brute-force: periodic
+# AAAAAaAaAAcaacaaaAcaaccc -> by non-terminating brute-force: periodic
+# AAAaAccAAccAaaacaAaAcaca -> by non-terminating brute-force: periodic
+# AAAaAccAAccAaacaaAaAacac -> by non-terminating brute-force: periodic
+# AAAaaAAaAaaaAcaAaAaAcAcA -> by non-terminating brute-force: periodic
+# AAAaaAAaAaaacAaAAcAcaAaA -> Eye-Periodic (but nice)
+# AAAaaAAaAaaacaaAaAaAacac -> by non-terminating brute-force: periodic
+# AAAaaAAcAaAacAcAAaaAaAaa -> by non-terminating brute-force: periodic
+# AAAaaAAcAaaAacaacAcAcaca -> by non-terminating brute-force: periodic
+# AAAaaAAcAaaAcaaaacaccAcA -> by non-terminating brute-force: periodic
+# AAAaaAacAaaAcAaaAcAccaca -> by non-terminating brute-force: periodic
+# AAAaaAcAAaaAcaaaAcAcacac -> by non-terminating brute-force: periodic
+# AAAaaccaAcAcaAaAaacAacca -> by non-terminating brute-force: periodic
+# AAAaaccaAcaccaaaaAaAcAcA -> by non-terminating brute-force: periodic
+# AaAaAaaAAacAcAcAAcAcaAaA -> by non-terminating brute-force: periodic
+# AaAaAcaAAaaAAcaAAacAaAcA -> by non-terminating brute-force: periodic
+# AaAaaAAcAaaAAcaAAacAaAcA -> by non-terminating brute-force: periodic
+# AaAaaAacAaaAacaAAacaaAca -> by non-terminating brute-force: periodic
+# AaAaaAcaAaaAcaaAAaacaAac -> by non-terminating brute-force: periodic
+# AaAaacaAAaaAacaAAacaaAca -> by non-terminating brute-force: periodic
+# AaAacaaAAaaAcaaAAaacaAac -> by non-terminating brute-force: periodic
+# AaAaaAcAAaAcaAAcAaaAcAaA -> by non-terminating brute-force: periodic
+# AaAacAaAAaAcaAAcAaaAcAaA -> Periodic (12-ominos + flip)
